@@ -1,0 +1,200 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://pause_overlay.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/arvore.png" id="2_arvore"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/titulo_jogo_pausado.png" id="3_titulo_pausa"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/icone_home.png" id="4_icone_home"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/icone_reiniciar.png" id="5_icone_reiniciar"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/icone_configuracoes.png" id="6_icone_config"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/texto_continuar.png" id="7_texto_continuar"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/botao_pequeno/normal.png" id="8_bp_normal"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/botao_pequeno/apertado.png" id="9_bp_apertado"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/botao_grande/normal.png" id="10_bg_normal"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/botao_grande/apertado.png" id="11_bg_apertado"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/tela_de_configuracoes/titulo_configuracoes.png" id="12_titulo_config"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/tela_de_configuracoes/seta_voltar.png" id="13_seta_voltar"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/tela_de_configuracoes/fullscreen_on.png" id="14_fs_on"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/tela_de_configuracoes/texto_fullscreen.png" id="15_texto_fs"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/tela_de_configuracoes/placa_volume.png" id="16_placa_vol"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/tela_de_configuracoes/barra_volume.png" id="17_barra_vol"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/tela_de_configuracoes/moldura_volume.png" id="18_moldura_vol"]
+[ext_resource type="Texture2D" path="res://assets/tela_de_pause/tela_de_configuracoes/pino_volume.png" id="19_pino_vol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp_normal"]
+atlas = ExtResource("8_bp_normal")
+region = Rect2(1060, 465, 170, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp_apertado"]
+atlas = ExtResource("9_bp_apertado")
+region = Rect2(1060, 465, 170, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg_normal"]
+atlas = ExtResource("10_bg_normal")
+region = Rect2(685, 665, 540, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg_apertado"]
+atlas = ExtResource("11_bg_apertado")
+region = Rect2(685, 665, 540, 150)
+
+[node name="PauseOverlay" type="CanvasLayer"]
+layer = 10
+process_mode = 3
+script = ExtResource("1_script")
+
+[node name="FundoEscuro" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="TroncoContainer" type="Node2D" parent="."]
+
+[node name="ArvorePausa" type="Node2D" parent="TroncoContainer"]
+
+[node name="TroncoSprite" type="Sprite2D" parent="TroncoContainer/ArvorePausa"]
+texture = ExtResource("2_arvore")
+centered = false
+
+[node name="TituloPausa" type="Sprite2D" parent="TroncoContainer/ArvorePausa"]
+texture = ExtResource("3_titulo_pausa")
+centered = false
+
+[node name="BotaoHome" type="TextureButton" parent="TroncoContainer/ArvorePausa"]
+offset_left = 690.0
+offset_top = 465.0
+offset_right = 860.0
+offset_bottom = 610.0
+texture_normal = SubResource("AtlasTexture_bp_normal")
+texture_pressed = SubResource("AtlasTexture_bp_apertado")
+
+[node name="Icone" type="Sprite2D" parent="TroncoContainer/ArvorePausa/BotaoHome"]
+position = Vector2(55, 30)
+texture = ExtResource("4_icone_home")
+centered = false
+region_enabled = true
+region_rect = Rect2(1115, 425, 65, 60)
+
+[node name="BotaoReiniciar" type="TextureButton" parent="TroncoContainer/ArvorePausa"]
+offset_left = 875.0
+offset_top = 465.0
+offset_right = 1045.0
+offset_bottom = 610.0
+texture_normal = SubResource("AtlasTexture_bp_normal")
+texture_pressed = SubResource("AtlasTexture_bp_apertado")
+
+[node name="Icone" type="Sprite2D" parent="TroncoContainer/ArvorePausa/BotaoReiniciar"]
+position = Vector2(55, 35)
+texture = ExtResource("5_icone_reiniciar")
+centered = false
+region_enabled = true
+region_rect = Rect2(1115, 430, 60, 60)
+
+[node name="BotaoConfiguracoes" type="TextureButton" parent="TroncoContainer/ArvorePausa"]
+offset_left = 1060.0
+offset_top = 465.0
+offset_right = 1230.0
+offset_bottom = 610.0
+texture_normal = SubResource("AtlasTexture_bp_normal")
+texture_pressed = SubResource("AtlasTexture_bp_apertado")
+
+[node name="Icone" type="Sprite2D" parent="TroncoContainer/ArvorePausa/BotaoConfiguracoes"]
+position = Vector2(55, 30)
+texture = ExtResource("6_icone_config")
+centered = false
+region_enabled = true
+region_rect = Rect2(1115, 495, 55, 60)
+
+[node name="BotaoContinuar" type="TextureButton" parent="TroncoContainer/ArvorePausa"]
+offset_left = 685.0
+offset_top = 665.0
+offset_right = 1225.0
+offset_bottom = 815.0
+texture_normal = SubResource("AtlasTexture_bg_normal")
+texture_pressed = SubResource("AtlasTexture_bg_apertado")
+
+[node name="Texto" type="Sprite2D" parent="TroncoContainer/ArvorePausa/BotaoContinuar"]
+position = Vector2(107, 37)
+texture = ExtResource("7_texto_continuar")
+centered = false
+region_enabled = true
+region_rect = Rect2(792, 712, 330, 51)
+
+[node name="ArvoreConfiguracoes" type="Node2D" parent="TroncoContainer"]
+position = Vector2(0, 1080)
+
+[node name="TroncoSprite" type="Sprite2D" parent="TroncoContainer/ArvoreConfiguracoes"]
+texture = ExtResource("2_arvore")
+centered = false
+
+[node name="TituloConfiguracoes" type="Sprite2D" parent="TroncoContainer/ArvoreConfiguracoes"]
+texture = ExtResource("12_titulo_config")
+centered = false
+
+[node name="BotaoVoltar" type="TextureButton" parent="TroncoContainer/ArvoreConfiguracoes"]
+offset_left = 620.0
+offset_top = 255.0
+offset_right = 790.0
+offset_bottom = 400.0
+texture_normal = SubResource("AtlasTexture_bp_normal")
+texture_pressed = SubResource("AtlasTexture_bp_apertado")
+
+[node name="Icone" type="Sprite2D" parent="TroncoContainer/ArvoreConfiguracoes/BotaoVoltar"]
+position = Vector2(50, 20)
+texture = ExtResource("13_seta_voltar")
+centered = false
+region_enabled = true
+region_rect = Rect2(670, 275, 65, 75)
+
+[node name="BotaoFullscreen" type="TextureButton" parent="TroncoContainer/ArvoreConfiguracoes"]
+offset_left = 685.0
+offset_top = 460.0
+offset_right = 1225.0
+offset_bottom = 610.0
+texture_normal = SubResource("AtlasTexture_bg_normal")
+texture_pressed = SubResource("AtlasTexture_bg_apertado")
+
+[node name="IconeCheck" type="Sprite2D" parent="TroncoContainer/ArvoreConfiguracoes/BotaoFullscreen"]
+position = Vector2(45, 35)
+texture = ExtResource("14_fs_on")
+centered = false
+region_enabled = true
+region_rect = Rect2(730, 495, 55, 55)
+
+[node name="Texto" type="Sprite2D" parent="TroncoContainer/ArvoreConfiguracoes/BotaoFullscreen"]
+position = Vector2(145, 44)
+texture = ExtResource("15_texto_fs")
+centered = false
+region_enabled = true
+region_rect = Rect2(830, 504, 328, 42)
+
+[node name="PainelVolume" type="Control" parent="TroncoContainer/ArvoreConfiguracoes"]
+offset_left = 690.0
+offset_top = 635.0
+offset_right = 1230.0
+offset_bottom = 785.0
+
+[node name="Placa" type="Sprite2D" parent="TroncoContainer/ArvoreConfiguracoes/PainelVolume"]
+texture = ExtResource("16_placa_vol")
+centered = false
+region_enabled = true
+region_rect = Rect2(690, 635, 540, 150)
+
+[node name="Barra" type="Sprite2D" parent="TroncoContainer/ArvoreConfiguracoes/PainelVolume"]
+position = Vector2(115, 50)
+texture = ExtResource("17_barra_vol")
+centered = false
+region_enabled = true
+region_rect = Rect2(805, 685, 395, 25)
+
+[node name="Moldura" type="Sprite2D" parent="TroncoContainer/ArvoreConfiguracoes/PainelVolume"]
+position = Vector2(40, 35)
+texture = ExtResource("18_moldura_vol")
+centered = false
+region_enabled = true
+region_rect = Rect2(730, 670, 475, 60)
+
+[node name="Pino" type="Sprite2D" parent="TroncoContainer/ArvoreConfiguracoes/PainelVolume"]
+position = Vector2(285, 35)
+texture = ExtResource("19_pino_vol")
+centered = false
+region_enabled = true
+region_rect = Rect2(975, 670, 40, 55)
