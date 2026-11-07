@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/pedra.png" id="1_pedra"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pedra"]
+radius = 14.0
+height = 104.0
+
+[node name="Pedra" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-72.5, -90)
+texture = ExtResource("1_pedra")
+centered = false
+region_enabled = true
+region_rect = Rect2(280, 260, 145, 115)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pedra")

@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/pedra_da_partida.png" id="1_partida"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_partida"]
+radius = 12.0
+height = 95.0
+
+[node name="PedraDaPartida" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-65, -55)
+texture = ExtResource("1_partida")
+centered = false
+region_enabled = true
+region_rect = Rect2(485, 415, 130, 70)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_partida")

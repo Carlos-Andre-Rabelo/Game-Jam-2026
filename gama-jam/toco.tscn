@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/tronco.png" id="1_tronco"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_toco"]
+radius = 13.0
+height = 80.0
+
+[node name="Toco" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-57.5, -68)
+texture = ExtResource("1_tronco")
+centered = false
+region_enabled = true
+region_rect = Rect2(1190, 545, 115, 90)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_toco")

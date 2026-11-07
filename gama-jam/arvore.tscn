@@ -1,0 +1,33 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/arvore.png" id="1_arvore"]
+[ext_resource type="Script" path="res://arvore.gd" id="2_script"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tronco"]
+radius = 16.0
+height = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_copa"]
+size = Vector2(165, 235)
+
+[node name="Arvore" type="Node2D"]
+script = ExtResource("2_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-77.5, -270)
+texture = ExtResource("1_arvore")
+centered = false
+region_enabled = true
+region_rect = Rect2(70, 590, 155, 300)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tronco")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -152.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_copa")
