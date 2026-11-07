@@ -1,0 +1,282 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/agua.png" id="1_agua"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/base_da_ilha.png" id="2_ilha"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/brilho_na_agua.png" id="3_brilho"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/mato.png" id="4_mato"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/pedra.png" id="5_pedra"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/tronco.png" id="6_tronco"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/sapo_totem.png" id="7_sapo"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/pedra_da_partida.png" id="8_pedra_partida"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/bandeira/frame.png" id="9_ban0"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/bandeira/frame_1.png" id="10_ban1"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/bandeira/frame_2.png" id="11_ban2"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/boss.png" id="12_boss"]
+[ext_resource type="Texture2D" path="res://assets/mapa_lobby/area_queimada/arvore.png" id="13_arvore"]
+[ext_resource type="Texture2D" path="res://assets/personagens/nana/idle/idle_1.png" id="14_nana_i1"]
+[ext_resource type="Texture2D" path="res://assets/personagens/nana/idle/idle_2.png" id="15_nana_i2"]
+[ext_resource type="Texture2D" path="res://assets/personagens/nana/idle/idle_3.png" id="16_nana_i3"]
+[ext_resource type="Texture2D" path="res://assets/personagens/nana/run/run_1.png" id="17_nana_r1"]
+[ext_resource type="Texture2D" path="res://assets/personagens/nana/run/run_2.png" id="18_nana_r2"]
+[ext_resource type="Texture2D" path="res://assets/personagens/nana/run/run_3.png" id="19_nana_r3"]
+[ext_resource type="Script" path="res://player.gd" id="20_player_script"]
+[ext_resource type="PackedScene" path="res://arvore.tscn" id="21_arvore_scene"]
+[ext_resource type="PackedScene" path="res://pedra.tscn" id="22_pedra_scene"]
+[ext_resource type="PackedScene" path="res://toco.tscn" id="23_toco_scene"]
+[ext_resource type="PackedScene" path="res://grande_tronco.tscn" id="24_grande_tronco_scene"]
+[ext_resource type="PackedScene" path="res://pedra_da_partida.tscn" id="25_partida_scene"]
+[ext_resource type="AudioStream" uid="uid://d0xjw867yv5am" path="res://assets/audio/lobby.mp3" id="26_musica"]
+[ext_resource type="PackedScene" path="res://pause_overlay.tscn" id="27_pause_scene"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ban0"]
+atlas = ExtResource("9_ban0")
+region = Rect2(535, 295, 105, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ban1"]
+atlas = ExtResource("10_ban1")
+region = Rect2(535, 295, 105, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ban2"]
+atlas = ExtResource("11_ban2")
+region = Rect2(535, 295, 105, 145)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bandeira"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ban0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ban1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ban2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nana"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_nana_i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nana_i2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_nana_i3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.75
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_nana_r1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_nana_r2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_nana_r3")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pes"]
+radius = 18.0
+
+[node name="Lobby" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LimitesDoRio" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LimitesDoRio"]
+build_mode = 1
+polygon = PackedVector2Array(245, -450, 564, -450, 589, -425, 600, -325, 829, -320, 849, -305, 849, 10, 825, 13, 694, 13, 684, 23, 684, 100, 694, 115, 710, 120, 814, 120, 829, 135, 824, 354, 805, 383, 705, 383, 685, 363, 680, 303, 670, 288, 650, 278, 580, 278, 560, 293, 554, 418, 534, 438, -145, 438, -165, 418, -170, 313, -180, 298, -200, 288, -270, 288, -280, 293, -290, 303, -300, 353, -320, 373, -590, 373, -610, 353, -610, 209, -625, 194, -650, 184, -675, 174, -675, 104, -690, 89, -735, 89, -755, 79, -770, 64, -775, -290, -750, -315, -671, -320, -645, -415, -346, -420, -321, -395, -321, -316, -300, -295, 14, -295, 60, -370, 209, -375, 220, -425, 245, -449)
+
+[node name="Agua" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(-960, -540)
+texture = ExtResource("1_agua")
+centered = false
+
+[node name="BaseDaIlha" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-960, -540)
+texture = ExtResource("2_ilha")
+centered = false
+
+[node name="BrilhoNaAgua" type="Sprite2D" parent="."]
+z_index = -2
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(-960, -540)
+texture = ExtResource("3_brilho")
+centered = false
+
+[node name="Mato1" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-510, 25)
+texture = ExtResource("4_mato")
+centered = false
+region_enabled = true
+region_rect = Rect2(450, 565, 95, 60)
+
+[node name="Mato2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(305, -415)
+texture = ExtResource("4_mato")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(450, 565, 95, 60)
+
+[node name="Mato3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-120, -265)
+texture = ExtResource("4_mato")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(450, 565, 95, 60)
+
+[node name="Mato4" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(290, -120)
+texture = ExtResource("4_mato")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(450, 565, 95, 60)
+
+[node name="Mato5" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-130, 165)
+texture = ExtResource("4_mato")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(450, 565, 95, 60)
+
+[node name="Mato6" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(690, 220)
+texture = ExtResource("4_mato")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(450, 565, 95, 60)
+
+[node name="Pedra1" parent="." instance=ExtResource("22_pedra_scene")]
+position = Vector2(-607.5, -190)
+
+[node name="Pedra2" parent="." instance=ExtResource("22_pedra_scene")]
+position = Vector2(137.5, -120)
+
+[node name="Pedra3" parent="." instance=ExtResource("22_pedra_scene")]
+position = Vector2(-327.5, 165)
+
+[node name="Sprite2D" parent="Pedra3" index="0"]
+flip_h = true
+
+[node name="Pedra4" parent="." instance=ExtResource("22_pedra_scene")]
+position = Vector2(747.5, -35)
+
+[node name="Sprite2D" parent="Pedra4" index="0"]
+flip_h = true
+
+[node name="Tronco1" parent="." instance=ExtResource("23_toco_scene")]
+position = Vector2(287.5, 73)
+
+[node name="Tronco2" parent="." instance=ExtResource("23_toco_scene")]
+position = Vector2(757.5, -442)
+
+[node name="Tronco3" parent="." instance=ExtResource("23_toco_scene")]
+position = Vector2(152.5, -317)
+
+[node name="Tronco4" parent="." instance=ExtResource("23_toco_scene")]
+position = Vector2(-652.5, 8)
+
+[node name="Tronco5" parent="." instance=ExtResource("23_toco_scene")]
+position = Vector2(-442.5, 323)
+
+[node name="SapoTotem1" type="Sprite2D" parent="."]
+position = Vector2(-55, 275)
+texture = ExtResource("7_sapo")
+centered = false
+region_enabled = true
+region_rect = Rect2(905, 815, 170, 130)
+
+[node name="SapoTotem2" type="Sprite2D" parent="."]
+position = Vector2(125, 255)
+texture = ExtResource("7_sapo")
+centered = false
+region_enabled = true
+region_rect = Rect2(905, 815, 170, 130)
+
+[node name="SapoTotem3" type="Sprite2D" parent="."]
+position = Vector2(305, 275)
+texture = ExtResource("7_sapo")
+centered = false
+region_enabled = true
+region_rect = Rect2(905, 815, 170, 130)
+
+[node name="PedraDaPartida1" parent="." instance=ExtResource("25_partida_scene")]
+position = Vector2(-410, -70)
+
+[node name="PedraDaPartida2" parent="." instance=ExtResource("25_partida_scene")]
+position = Vector2(100, 165)
+
+[node name="Bandeira1" type="AnimatedSprite2D" parent="."]
+position = Vector2(-425, -245)
+sprite_frames = SubResource("SpriteFrames_bandeira")
+autoplay = "default"
+centered = false
+
+[node name="Bandeira2" type="AnimatedSprite2D" parent="."]
+position = Vector2(85, -10)
+sprite_frames = SubResource("SpriteFrames_bandeira")
+autoplay = "default"
+centered = false
+
+[node name="Boss" parent="." instance=ExtResource("24_grande_tronco_scene")]
+position = Vector2(547.5, -145)
+
+[node name="Arvore1" parent="." instance=ExtResource("21_arvore_scene")]
+position = Vector2(-812.5, 320)
+
+[node name="Arvore2" parent="." instance=ExtResource("21_arvore_scene")]
+position = Vector2(-467.5, -260)
+
+[node name="Arvore3" parent="." instance=ExtResource("21_arvore_scene")]
+position = Vector2(-142.5, 65)
+
+[node name="Arvore4" parent="." instance=ExtResource("21_arvore_scene")]
+position = Vector2(572.5, 205)
+
+[node name="Nana" type="CharacterBody2D" parent="."]
+position = Vector2(-168, 245)
+script = ExtResource("20_player_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Nana"]
+position = Vector2(0, -75)
+sprite_frames = SubResource("SpriteFrames_nana")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nana"]
+shape = SubResource("CircleShape2D_pes")
+
+[node name="MusicaLobby" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_musica")
+volume_db = -2.5
+autoplay = true
+
+[node name="PauseOverlay" parent="." instance=ExtResource("27_pause_scene")]
